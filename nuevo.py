@@ -1,5 +1,6 @@
 import tkinter
 from tkinter import ttk
+from tkcalendar import Calendar, DateEntry
 
 class NuevoRegistro(tkinter.Frame):
      def __init__(self, parent):
@@ -67,5 +68,8 @@ class NuevoRegistro(tkinter.Frame):
 
          txtRaza = tkinter.Entry(frame1, width=25, font=('Arial', 10))
          txtRaza.grid(column=1, row=4, padx=5, pady=10, sticky='w')
+
+         txtNacimiento = DateEntry(frame1, width=22, font=('Arial', 10))
+         txtNacimiento.grid(column=1, row=6, padx=5, pady=10, sticky='w')
 
 
