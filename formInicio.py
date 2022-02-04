@@ -1,5 +1,6 @@
 import tkinter
 import nuevo
+import nuevoRegistro
 
 class formularioPrincipal(tkinter.Frame):
 
@@ -36,7 +37,7 @@ class formularioPrincipal(tkinter.Frame):
         titulo.grid(column=1, row=0, pady=10, padx=10)
 
         #Creacion de las opciones de la cinta de opciones
-        agregarNuevo = tkinter.Button(frame2, width=20, font=('Arial', 9, 'bold'), foreground='white', text='Nuevo Registro', bg='gray', border='0', command = nuevo.NuevoRegistro(frame3).registrar)
+        agregarNuevo = tkinter.Button(frame2, width=20, font=('Arial', 9, 'bold'), foreground='white', text='Nuevo Registro', bg='gray', border='0', command = nuevoRegistro.ventanaRegistro(frame3).crearFrame)
         agregarNuevo.grid(column=0, row=0, pady=10, padx=10)
 
         buscarRegistro = tkinter.Button(frame2, width=20, font=('Arial', 9, 'bold'), foreground='white', text='Buscar Registro', bg='gray', border='0')
@@ -48,6 +49,7 @@ class formularioPrincipal(tkinter.Frame):
         ingresosEgresos = tkinter.Button(frame2, width=20, font=('Arial', 9, 'bold'), foreground='white', text='Ingresos y Egresos', bg='gray', border='0')
         ingresosEgresos.grid(column=3, row=0, pady=10, padx=10)
 
+        """
         #Creación del contendor para sub-formularios
         contenedorVentanas = tkinter.LabelFrame(frame3, text='Espacio de Trabajo')
         contenedorVentanas.grid(column=0, row=0, padx=10, pady=10)
@@ -62,6 +64,7 @@ class formularioPrincipal(tkinter.Frame):
             radio.grid(column=grid_column, row=0, ipadx=10, ipady=10)
             # grid column
             grid_column += 1
+            """
 
 def main():
     root = tkinter.Tk()

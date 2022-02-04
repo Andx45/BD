@@ -12,6 +12,7 @@ class NuevoRegistro(tkinter.Frame):
          self.NuevoVentana = tkinter.Toplevel(self.parent, bg='#F2F3F4')
          self.NuevoVentana.title('Nuevo Registro')
          self.NuevoVentana.geometry('700x500')
+
          self.NuevoVentana.grid_rowconfigure(0, weight = 1)
          self.NuevoVentana.grid_columnconfigure(0, weight = 1)
 
