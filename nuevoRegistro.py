@@ -18,6 +18,12 @@ class ventanaRegistro(tkinter.Frame):
         frameContenido = tkinter.Frame(frameVentana, bg='#e8ebe9', height=375, width=400)
         frameContenido.grid(row=1, sticky='nsew')
 
+        imagenUno = tkinter.Canvas(frameContenido, bg='white', height=175, width=175)
+        imagenUno.grid(column=0, row=5, padx=10, pady=10)
+
+        imagenDos = tkinter.Canvas(frameContenido, bg='white', height=175, width=175)
+        imagenDos.grid(column=1, row=5, padx=10, pady=10)
+
         #Función para cerrar la ventana
         def cerrar():
             frameVentana.destroy()
@@ -77,12 +83,19 @@ class ventanaRegistro(tkinter.Frame):
         Separador = ttk.Separator(frameContenido, orient='vertical')
         Separador.grid(column=2, row=0, rowspan=4, sticky='ns')
 
-            #>---------Button--------<
+            #>---------Buttons--------<
+        btnExUno = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0')
+        btnExUno.grid(column=0, row=6, padx=10, pady=5)
+
+        btnExDos = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0')
+        btnExDos.grid(column=1, row=6, padx=10, pady=5)
+
         btnNuevo = tkinter.Button(frameContenido, width=8, height=3, text='Registrar')
         btnNuevo.grid(column=3, row=0, rowspan=2, padx=10, pady=10, sticky='nsew')
 
         btnGuardar = tkinter.Button(frameContenido, width=8, height=3, text='Modificar')
         btnGuardar.grid(column=3, row=2, rowspan=2, padx=10, pady=10, sticky='nsew')
+
 
         
 
