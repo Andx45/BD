@@ -1,5 +1,6 @@
 import tkinter
 from tkinter import ttk
+from tkinter import filedialog as fd
 from tkcalendar import Calendar, DateEntry
 import cerrar
 
@@ -18,15 +19,19 @@ class ventanaRegistro(tkinter.Frame):
         frameContenido = tkinter.Frame(frameVentana, bg='#e8ebe9', height=375, width=400)
         frameContenido.grid(row=1, sticky='nsew')
 
-        imagenUno = tkinter.Canvas(frameContenido, bg='white', height=175, width=175)
-        imagenUno.grid(column=0, row=5, padx=10, pady=10)
-
-        imagenDos = tkinter.Canvas(frameContenido, bg='white', height=175, width=175)
-        imagenDos.grid(column=1, row=5, padx=10, pady=10)
-
-        #Función para cerrar la ventana
+        #Funciones extras de comportamiento del formulario
         def cerrar():
             frameVentana.destroy()
+
+        def mover():
+            frameVentana.place(x=100, y=20)
+
+        def abrirArchivo():
+            filetypes = (
+                ('archivos de imagen', '*.jpg'), 
+                ('Todos los archivos', '*.*')
+            )
+            f = fd.askopenfile(filetypes=filetypes)
         
         #>---------------Parte Superior------------------<
         frameSuperior.columnconfigure(0, weight=3)
@@ -77,27 +82,27 @@ class ventanaRegistro(tkinter.Frame):
         txtNotas.grid(column=1, row=4, padx=5, pady=5)
 
             #>----------Imagenes-----------<
-        
+        imagenUno = tkinter.Canvas(frameContenido, bg='white', height=175, width=175, bd=1, relief='groove')
+        imagenUno.grid(column=0, row=5, padx=10, pady=10)
+
+        imagenDos = tkinter.Canvas(frameContenido, bg='white', height=175, width=175, bd=1, relief='groove')
+        imagenDos.grid(column=1, row=5, padx=10, pady=10)
 
             #>---------Separador----------<
         Separador = ttk.Separator(frameContenido, orient='vertical')
-        Separador.grid(column=2, row=0, rowspan=4, sticky='ns')
+        Separador.grid(column=2, row=0, rowspan=7, sticky='ns')
 
             #>---------Buttons--------<
-        btnExUno = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0')
+        btnExUno = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0', command=abrirArchivo())
         btnExUno.grid(column=0, row=6, padx=10, pady=5)
 
         btnExDos = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0')
         btnExDos.grid(column=1, row=6, padx=10, pady=5)
 
-        btnNuevo = tkinter.Button(frameContenido, width=8, height=3, text='Registrar')
+        btnNuevo = tkinter.Button(frameContenido, width=8, height=3, text='Registrar', command=mover)
         btnNuevo.grid(column=3, row=0, rowspan=2, padx=10, pady=10, sticky='nsew')
 
         btnGuardar = tkinter.Button(frameContenido, width=8, height=3, text='Modificar')
         btnGuardar.grid(column=3, row=2, rowspan=2, padx=10, pady=10, sticky='nsew')
-
-
-        
-
 
         
