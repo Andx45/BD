@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import ttk
 
+
 class ventanaBuscar(tkinter.Frame):
     def __init__(self, parent):
         tkinter.Frame.__init__(self, parent)
@@ -33,6 +34,6 @@ class ventanaBuscar(tkinter.Frame):
         lblNombre = tkinter.Label(frameContenido, text='Nombre:', font=('Arial', 10, 'bold'))
         lblNombre.grid(column=0, row=0, padx=10, pady=10, sticky='w')
 
-        nombreVar = tkinter.StringVar
-        comboNombre = ttk.ComboBox(frameContenido, font=('Arial', 10), width=30, textvariable=nombreVar)
-        comboNombre.grid(column=1, row=0, rowspan=3, padx=10, pady=10)
+        #nombreVar = tkinter.StringVar
+        #comboNombre = ttk.ComboBox(frameContenido, font=('Arial', 10), width=30, textvariable=nombreVar)
+        #comboNombre.grid(column=1, row=0, rowspan=3, padx=10, pady=10)

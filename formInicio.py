@@ -12,7 +12,7 @@ class formularioPrincipal(tkinter.Frame):
 
     def interfazGrafica(self):
         #Propiedades generales de la ventana
-        self.parent.title('Refugio Sol y Luna')
+        self.parent.title('Registro de animales')
         self.parent.config(bg='white')
         self.parent.geometry('%dx%d' % (self.parent.winfo_screenwidth(), self.parent.winfo_screenheight()))
         self.parent.call('wm', 'iconphoto', self.parent._w, tkinter.PhotoImage(file='img/Paw.png'))

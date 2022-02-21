@@ -1,37 +1,54 @@
 import tkinter
-from tkinter import ttk
+from tkinter import CENTER, NW, ttk
 from tkinter import filedialog as fd
-from tkcalendar import Calendar, DateEntry
-import cerrar
+from tkinter.messagebox import showinfo
+from tkcalendar import DateEntry
+from PIL import ImageTk, Image
 
 class ventanaRegistro(tkinter.Frame):
+
     def __init__(self, parent):
         tkinter.Frame.__init__(self, parent)
         self.parent = parent
 
     def crearFrame(self):
+        # ------> Cierra la ventana activa
+        def cerrarV():
+            frameVentana.destroy()
+
+        # ------> Abre las fotos y las coloca en los frames
+        def abrirArchivo(a):
+            filetypes = (
+                ('archivos de imagen', '*.jpg *.png *.gif *.tif *.tiff'), 
+                ('Todos los archivos', '*.*')
+            )
+            fileImagen = fd.askopenfilename(filetypes=filetypes)
+
+            load = Image.open(fileImagen)
+            load = load.resize((175, 175), Image.ANTIALIAS)
+            render = ImageTk.PhotoImage(load)
+            
+            if a == 0:
+                lblImagen = tkinter.Label(imagenUno, image=render, bg='#ffbf00')
+            else:
+                lblImagen = tkinter.Label(imagenDos, image=render, bg='#ffbf00')
+            
+            lblImagen.image = render
+            lblImagen.grid(column=0, row=0)
+            
+        # --------> Permite arrastrar la ventana
+        def drag(event):
+            frameVentana.place(x=event.x_root, y=event.y_root, anchor='center')
+
         frameVentana = tkinter.Frame(self.parent, bg='#e8ebe9', height=400, width=400)
         frameVentana.grid(row=0, sticky='nsew', pady=10, padx=10)
 
         frameSuperior = tkinter.Frame(frameVentana, bg='#cfcfcf', height=25, width=400)
         frameSuperior.grid(row=0, sticky='ew')
+        frameSuperior.bind('<B1-Motion>', drag)
 
         frameContenido = tkinter.Frame(frameVentana, bg='#e8ebe9', height=375, width=400)
         frameContenido.grid(row=1, sticky='nsew')
-
-        #Funciones extras de comportamiento del formulario
-        def cerrar():
-            frameVentana.destroy()
-
-        def mover():
-            frameVentana.place(x=100, y=20)
-
-        def abrirArchivo():
-            filetypes = (
-                ('archivos de imagen', '*.jpg'), 
-                ('Todos los archivos', '*.*')
-            )
-            f = fd.askopenfile(filetypes=filetypes)
         
         #>---------------Parte Superior------------------<
         frameSuperior.columnconfigure(0, weight=3)
@@ -39,7 +56,7 @@ class ventanaRegistro(tkinter.Frame):
         lblTitulo = tkinter.Label(frameSuperior, text='Ficha de Registro', foreground='black', bg='#cfcfcf')
         lblTitulo.grid(column=0, row=0, padx=8, sticky='nw')
 
-        btnCerrar = tkinter.Button(frameSuperior, foreground='white',font=('Arial', 10, 'bold'), text='X', bg='red', width=5, border='0', command=cerrar)
+        btnCerrar = tkinter.Button(frameSuperior, foreground='white',font=('Arial', 10, 'bold'), text='X', bg='red', width=5, border='0', command=cerrarV)
         btnCerrar.grid(column=1, row=0, sticky='ne')
 
         #>---------------Contenido de la ventana------------------<
@@ -93,13 +110,13 @@ class ventanaRegistro(tkinter.Frame):
         Separador.grid(column=2, row=0, rowspan=7, sticky='ns')
 
             #>---------Buttons--------<
-        btnExUno = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0', command=abrirArchivo())
+        btnExUno = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0', command=lambda:abrirArchivo(0))
         btnExUno.grid(column=0, row=6, padx=10, pady=5)
 
-        btnExDos = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0')
+        btnExDos = tkinter.Button(frameContenido, width=20, text='Examinar...', bg='#d9db6b', font=('Arial', 10), border='0', command=lambda:abrirArchivo(1))
         btnExDos.grid(column=1, row=6, padx=10, pady=5)
 
-        btnNuevo = tkinter.Button(frameContenido, width=8, height=3, text='Registrar', command=mover)
+        btnNuevo = tkinter.Button(frameContenido, width=8, height=3, text='Registrar')
         btnNuevo.grid(column=3, row=0, rowspan=2, padx=10, pady=10, sticky='nsew')
 
         btnGuardar = tkinter.Button(frameContenido, width=8, height=3, text='Modificar')

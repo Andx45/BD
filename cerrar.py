@@ -6,5 +6,4 @@ class cerrarVentana(tkinter.Frame):
         self.parent = parent
     
     def cerrarFrame(self):
-        for widgets in self.parent:
-            widgets.destroy()
+        self.destroy()
