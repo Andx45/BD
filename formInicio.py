@@ -1,4 +1,5 @@
 import tkinter
+from numpy import size
 import nuevoRegistro
 import buscarRegistro
 from PIL import ImageTk, Image
@@ -28,6 +29,8 @@ class formularioPrincipal(tkinter.Frame):
         #Propiedades del espacio para sub-formularios
         frame3 = tkinter.Frame(self.parent, bg='white') 
         frame3.grid(row=2, sticky='nsew')
+        frame3.rowconfigure(0, minsize=800)
+        #frame3.columnconfigure(0, minsize=800)
 
         #Creación del titulo logo del encabezado
         self.parent.columnconfigure(0, weight=1)
